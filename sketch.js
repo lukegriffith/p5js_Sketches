@@ -25,9 +25,10 @@ function setup(){
 function draw() {
     background(150,150,150);
     
-    fill(100,100,100)
-    noStroke()
-    rect(0, height - 200, width, 200)
+    
+    noStroke();
+    fill(140,140,140);
+    rect(0, height - 200, width, 200);
 
     
     splashes.forEach(function(splash){
@@ -55,7 +56,7 @@ function draw() {
 var drop = function (){
 
     this.x = getRandomInt(0,width);
-    this.y = getRandomInt(-200,-50);
+    this.y = getRandomInt(-500,-50);
     this.speed = getRandomInt(15,20);
     this.end = getRandomInt(height - 200, height)
 
@@ -66,7 +67,7 @@ var drop = function (){
 
         if (this.y > this.end) { 
             this.x = getRandomInt(0,width);
-            this.y = getRandomInt(-200,-50);
+            this.y = getRandomInt(-500,-50);
             splash = new puddle(this.x, this.end+15)
             splash.draw();
             splashes.push(splash);
@@ -78,12 +79,13 @@ var drop = function (){
 
 var puddle = function (x,y){
 
-    this.size = getRandomInt(6,12);
+    this.w = getRandomInt(6,12);
+    this.h = getRandomInt(6,12);
 
     this.draw = function() {
         noStroke();
         fill(0,50,75,75);
-        ellipse(x,y,10,this.size)
+        ellipse(x,y,this.w,this.h);
     }
 }
 
