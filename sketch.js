@@ -1,20 +1,17 @@
-var width;
-var height;
-
-var limit = 120;
-var itteration = 0;
-var drops;
+var drops = Array();
 var splashes = Array();
+var rectHeight;
 
 
 function setup(){
-    width = window.windowWidth;
-    height = window.windowHeight;
-    createCanvas(width,height);
+    
+    createCanvas(
+        window.windowWidth,
+        window.windowHeight
+    );
     //fill(0,50,255);
     
-    
-    drops = new Array();
+    rectHeight = height / 5
 
     for (var i = 0; i < 100; i++) {
         var d = new drop()
@@ -29,7 +26,9 @@ function draw() {
     
     noStroke();
     fill(140,140,140);
-    rect(0, height - 200, width, 200);
+
+    
+    rect(0, height - rectHeight, width, rectHeight);
 
     
     splashes.forEach(function(splash){
@@ -38,7 +37,7 @@ function draw() {
 
 
 
-    while (splashes.length > 150) {
+    while (splashes.length > 250) {
         var splash = splashes.shift();
         splash.draw();
     }
@@ -58,8 +57,8 @@ var drop = function (){
 
     this.x = random(0,width);
     this.y = random(-500,-50);
-    this.speed = random(5,10);
-    this.end = random(height - 200, height)
+    this.speed = random(10,20);
+    this.end = random(height - rectHeight, height)
     this.alpha = random(75,95);
 
 
