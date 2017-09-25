@@ -30,12 +30,17 @@ function draw() {
     rect(0, height - 200, width, 200)
 
     
+    splashes.forEach(function(splash){
+        splash.draw();
+    })
 
 
-    while (splashes.length > 0) {
-        var splash = splashes.pop();
+
+    while (splashes.length > 150) {
+        var splash = splashes.shift();
         splash.draw();
     }
+
 
     drops.forEach(function (drop){
         drop.draw();
@@ -60,6 +65,7 @@ var drop = function (){
         line(this.x,this.y,this.x,this.y+10);
 
         if (this.y > this.end) { 
+            this.x = getRandomInt(0,width);
             this.y = getRandomInt(-200,-50);
             splash = new puddle(this.x, this.end+15)
             splash.draw();
